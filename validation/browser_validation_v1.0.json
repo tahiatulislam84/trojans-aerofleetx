@@ -1,0 +1,62 @@
+{
+  "checks": [
+    {
+      "name": "app visible",
+      "pass": true
+    },
+    {
+      "name": "fleet command rendered",
+      "pass": true
+    },
+    {
+      "name": "fleet health value",
+      "pass": true
+    },
+    {
+      "name": "predictive visible",
+      "pass": true
+    },
+    {
+      "name": "component cards",
+      "pass": true
+    },
+    {
+      "name": "explainability shown",
+      "pass": true
+    },
+    {
+      "name": "schedule modal opens",
+      "pass": true
+    },
+    {
+      "name": "mission control opens",
+      "pass": true
+    },
+    {
+      "name": "xr opens",
+      "pass": true
+    },
+    {
+      "name": "training opens",
+      "pass": true
+    },
+    {
+      "name": "safety opens",
+      "pass": true
+    },
+    {
+      "name": "research boundary present",
+      "pass": true
+    }
+  ],
+  "javascript_errors": [],
+  "pass": true,
+  "screenshots": [
+    "/mnt/data/TROJANS_AeroFleetX_Play_Release_1.0.0/play-console/graphics/screenshots/01-command-1080x1920.png",
+    "/mnt/data/TROJANS_AeroFleetX_Play_Release_1.0.0/play-console/graphics/screenshots/02-predictive-1080x1920.png",
+    "/mnt/data/TROJANS_AeroFleetX_Play_Release_1.0.0/play-console/graphics/screenshots/03-mission-control-1080x1920.png",
+    "/mnt/data/TROJANS_AeroFleetX_Play_Release_1.0.0/play-console/graphics/screenshots/04-xr-1080x1920.png",
+    "/mnt/data/TROJANS_AeroFleetX_Play_Release_1.0.0/play-console/graphics/screenshots/05-training-1080x1920.png",
+    "/mnt/data/TROJANS_AeroFleetX_Play_Release_1.0.0/play-console/graphics/screenshots/06-trust-1080x1920.png"
+  ]
+}

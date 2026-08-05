@@ -1,0 +1,34 @@
+{
+  "application": "TROJANS AeroFleetX",
+  "package_id": "com.trojans.aerofleetx.mobileapp",
+  "version_code": 1,
+  "version_name": "1.0.0",
+  "min_sdk": 23,
+  "target_sdk": 36,
+  "compile_sdk": 36,
+  "aab_signed_verified": true,
+  "apk_signed_verified": true,
+  "aab_structure": {
+    "BundleConfig.pb": true,
+    "base manifest": true,
+    "classes.dex": true,
+    "resources.pb": true,
+    "web index": true,
+    "icon resource": true,
+    "signature": true
+  },
+  "aab_sha256": "c7eb14a40a4436ebce987dd076d7e57d768d4deb4c418248de9a4f69fd5e0c42",
+  "apk_sha256": "e4141cdc6b2d70efd979e49483635072ab329e05706db0452db08967f80585c0",
+  "notes": [
+    "AAB assembled with protobuf manifest/resource table and signed with supplied upload key.",
+    "Internal-test APK is rebuilt from the validated v18 wrapper and retains its prototype wrapper implementation.",
+    "Physical Android installation and Google Play server-side processing are not verifiable in this environment."
+  ],
+  "source_build_repair_2026_08_05": {
+    "java_checked_exception_defect_fixed": true,
+    "unsigned_clean_build_workflow_added": true,
+    "local_clean_gradle_build_executed": false,
+    "public_ci_green_run_url": null,
+    "status": "pending public CI execution"
+  }
+}

@@ -1,0 +1,41 @@
+name: Signed Android release (maintainer only)
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.13"
+      - name: Restore upload key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.AEROFLEETX_UPLOAD_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.AEROFLEETX_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.AEROFLEETX_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.AEROFLEETX_KEY_PASSWORD }}
+        run: |
+          test -n "$KEYSTORE_BASE64"
+          mkdir -p release-signing
+          echo "$KEYSTORE_BASE64" | base64 --decode > release-signing/aerofleetx-upload.jks
+          cat > keystore.properties <<EOF
+          storeFile=release-signing/aerofleetx-upload.jks
+          storePassword=$STORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          keyPassword=$KEY_PASSWORD
+          EOF
+      - name: Lint and build signed bundle
+        run: gradle --no-daemon lintRelease bundleRelease
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aerofleetx-play-release
+          path: |
+            app/build/outputs/bundle/release/*.aab
+            app/build/reports/lint-results-release.*

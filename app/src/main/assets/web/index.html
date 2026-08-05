@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#071b2b">
+  <meta name="description" content="TROJANS AeroFleetX Research Edition — connected fleet intelligence, XR inspection, maintenance execution, predictive-risk simulation and technical training">
+  <title>TROJANS AeroFleetX</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="boot" class="boot-screen">
+    <img class="boot-brand-image" src="trjs-brand.jpg" alt="TROJANS AeroFleetX logo">
+    <div class="boot-progress"><i></i></div>
+    <div class="boot-edition">RESEARCH EDITION · 1.0</div><p>Connecting fleet intelligence and maintenance operations…</p>
+  </div>
+
+  <div id="app" class="app hidden">
+    <header class="app-header">
+      <button id="backBtn" class="icon-btn hidden" aria-label="Go back">‹</button>
+      <div class="brand-block">
+        <img class="brand-logo-mini" src="icons/icon-192.png" alt="TROJANS AeroFleetX logo">
+        <div><b id="pageTitle">AeroFleetX</b><small id="pageSubtitle">Fleet maintenance intelligence</small></div>
+      </div>
+      <button id="helpBtn" class="icon-btn" aria-label="Help">?</button>
+    </header>
+
+    <main id="main">
+      <section id="home" class="screen active">
+        <div class="welcome-card compact-welcome aerofleet-hero">
+          <div><span class="edition-pill">RESEARCH EDITION · 1.0</span><span class="eyebrow">FLEET MAINTENANCE INTELLIGENCE</span><h1 id="welcomeName">One fleet. One connected maintenance system.</h1><p>Monitor, predict, inspect, execute, record and learn through a single mobile workspace.</p></div>
+          <button class="hero-cta" data-open="predictive"><span>Open Predictive Intelligence</span><i>→</i></button>
+        </div>
+
+        <section class="fleet-command-card">
+          <div class="fleet-command-head"><div><span class="eyebrow">COMMAND</span><h2>Fleet Intelligence</h2><p>Live-style research dashboard generated from local demonstration records.</p></div><span class="data-state-badge">SIMULATED DATA</span></div>
+          <div class="fleet-command-kpis">
+            <article><span>Fleet availability</span><strong id="fleetAvailability">--</strong><small>Research readiness status</small></article>
+            <article><span>Fleet health</span><strong id="fleetHealth">--</strong><small>Calculated component score</small></article>
+            <article><span>Risk alerts</span><strong id="fleetAlerts">--</strong><small>High-priority observations</small></article>
+            <article><span>Workload</span><strong id="fleetWorkload">--</strong><small>Open and scheduled items</small></article>
+          </div>
+          <div id="fleetAircraftGrid" class="fleet-aircraft-grid"></div>
+          <div class="command-actions"><button class="primary-btn" data-open="predictive">Analyse fleet</button><button class="secondary-btn" data-open="schedule">Mission control</button></div>
+        </section>
+
+        <section class="mission-loop-card">
+          <span class="eyebrow">CONNECTED MAINTENANCE LOOP</span>
+          <div><b>Monitor</b><i>→</i><b>Predict</b><i>→</i><b>Inspect</b><i>→</i><b>Execute</b><i>→</i><b>Record</b><i>→</i><b>Learn</b></div>
+        </section>
+
+        <div class="primary-grid premium-actions">
+          <button class="action-card blue" data-open="xr">
+            <span class="action-icon">◎</span><div><b>XR Vision</b><small>Camera-assisted inspection, 3D guidance and evidence</small></div><i>→</i>
+          </button>
+          <button class="action-card purple" data-open="training">
+            <span class="action-icon">◇</span><div><b>Training Academy</b><small>Guided procedures, assessment and competency</small></div><i>→</i>
+          </button>
+          <button class="action-card amber" data-open="tasks">
+            <span class="action-icon">▦</span><div><b>Mission Control</b><small>Defects, work orders and maintenance execution</small></div><i>→</i>
+          </button>
+          <button class="action-card green" data-open="schedule">
+            <span class="action-icon">◫</span><div><b>Operations Planner</b><small>Line, base, recurring and unscheduled maintenance</small></div><i>→</i>
+          </button>
+          <button class="action-card check-blue" data-open="checks">
+            <span class="action-icon">A·B·C</span><div><b>Maintenance Programs</b><small>Line maintenance plus A, B, C and D packages</small></div><i>→</i>
+          </button>
+          <button class="action-card predictive-card" data-open="predictive">
+            <span class="action-icon">⌁</span><div><b>Predictive Intelligence</b><small>Explainable health scores and maintenance priorities</small></div><i>→</i>
+          </button>
+          <button class="action-card teal" data-open="more">
+            <span class="action-icon">✦</span><div><b>Digital Operations</b><small>Reliability, handover, AOG and engineering tools</small></div><i>→</i>
+          </button>
+        </div>
+        <div class="home-shortcuts">
+          <button data-open="demos"><span>✈</span><div><b>Fleet & Digital Aircraft</b><small>C-130J, 737, 787 and 777 research assets</small></div><i>›</i></button>
+          <button data-open="tutorials"><span>▶</span><div><b>Learning Centre</b><small>Guidance for every workflow</small></div><i>›</i></button>
+          <button data-open="safety"><span>✓</span><div><b>Safety & Privacy</b><small>Research limits, permissions and local data</small></div><i>›</i></button>
+        </div>
+
+        <section class="section-card">
+          <div class="section-title"><div><span class="eyebrow">TODAY</span><h2>Quick status</h2></div><button class="text-btn" data-open="results">View results</button></div>
+          <div class="metrics">
+            <div><strong id="metricInspections">0</strong><span>Inspections</span></div>
+            <div><strong id="metricTraining">0</strong><span>Training</span></div>
+            <div><strong id="metricOrders">0</strong><span>Open tasks</span></div>
+          </div>
+        </section>
+
+        <section class="section-card home-schedule-card">
+          <div class="section-title"><div><span class="eyebrow">MAINTENANCE PLANNER</span><h2>Next scheduled work</h2></div><button class="text-btn" data-open="schedule">Open terminal</button></div>
+          <div id="homeScheduleList" class="home-schedule-list"></div>
+        </section>
+
+        <section class="section-card getting-started">
+          <div class="section-title"><div><span class="eyebrow">FIRST TIME?</span><h2>Three-step start</h2></div></div>
+          <ol><li><b>Select a task</b><span>Choose XR inspection or maintenance training.</span></li><li><b>Follow the guided screen</b><span>Only the controls needed for the current step are shown.</span></li><li><b>Save the result</b><span>Create evidence, a report or a follow-up task.</span></li></ol>
+        </section>
+      </section>
+
+      <section id="xr" class="screen">
+        <div class="stepper" aria-label="XR workflow progress">
+          <button class="step active" data-xr-step="1"><b>1</b><span>Set up</span></button>
+          <i></i><button class="step" data-xr-step="2"><b>2</b><span>Camera</span></button>
+          <i></i><button class="step" data-xr-step="3"><b>3</b><span>Inspect</span></button>
+          <i></i><button class="step" data-xr-step="4"><b>4</b><span>Finish</span></button>
+        </div>
+
+        <div id="xrStep1" class="xr-step active">
+          <div class="page-intro intro-with-help"><div><span class="eyebrow">XR INSPECTION</span><h1>What are you inspecting?</h1><p>Select the aircraft area. The app prepares the correct training hotspots.</p></div><button class="tutorial-btn" data-tutorial="xr">▶ Show me how</button></div>
+          <div class="form-card">
+            <label><span>Aircraft demo</span><select id="xrAircraft">
+              <option value="c130">TRAINING-C130J-01 · C-130J Demo</option>
+              <option value="b737">DEMO-B737-01 · Boeing 737 Demo</option>
+              <option value="b787">DEMO-B787-01 · Boeing 787 Demo</option>
+              <option value="b777">DEMO-B777-01 · Boeing 777 Demo</option>
+              <option value="generic">GENERIC-TRAINER · Training mock-up</option>
+            </select></label>
+            <label><span>Inspection area</span><select id="xrZone"></select></label>
+            <label><span>Task mode</span><div class="segmented"><button class="selected" data-xr-mode="Guided">Guided</button><button data-xr-mode="Assessment">Assessment</button></div></label>
+          </div>
+          <div class="info-card"><span>ⓘ</span><p><b>Training prototype.</b> Use only approved maintenance data and qualified supervision for actual aircraft work.</p></div>
+          <button id="continueToCamera" class="primary-btn full">Continue to camera check <span>→</span></button>
+        </div>
+
+        <div id="xrStep2" class="xr-step">
+          <div class="page-intro"><span class="eyebrow">DEVICE CHECK</span><h1>Prepare the camera</h1><p>The app tests permission and provides a photo fallback when live video is unavailable.</p></div>
+          <div class="permission-card">
+            <div class="permission-row"><span class="permission-icon">📷</span><div><b>Camera access</b><small id="cameraDetail">Not checked</small></div><span id="cameraState" class="status-pill neutral">CHECK</span></div>
+            <div class="permission-row"><span class="permission-icon">🎙</span><div><b>Voice commands</b><small id="micDetail">Optional for hands-free mode</small></div><span id="micState" class="status-pill neutral">OPTIONAL</span></div>
+          </div>
+          <button id="testCameraBtn" class="primary-btn full">Test and start camera</button>
+          <label class="secondary-btn full file-btn">Use a photo instead<input id="xrPhotoFallback" type="file" accept="image/*" capture="environment"></label>
+          <div id="cameraError" class="error-card hidden"><b>Camera could not start</b><p id="cameraErrorText"></p><button id="retryCameraBtn" class="small-btn">Try again</button></div>
+          <button id="continueToInspect" class="primary-btn full hidden">Camera ready — start inspection <span>→</span></button>
+        </div>
+
+        <div id="xrStep3" class="xr-step xr-workspace">
+          <div class="xr-statusbar"><div><span id="xrLiveDot" class="live-dot"></span><b id="xrSessionStatus">Ready to align</b></div><span id="xrPointCounter">Point 1 of 5</span></div>
+          <div id="xrStage" class="xr-stage">
+            <video id="xrVideo" autoplay muted playsinline></video>
+            <img id="xrFallbackImage" class="hidden" alt="Selected inspection background">
+            <div id="xrNoCamera" class="xr-placeholder"><span>📷</span><b>Camera preview</b><small>Start the camera or use a photo</small></div>
+            <canvas id="xrOverlay" aria-label="Interactive 3D aircraft component model"></canvas>
+            <div id="xrHotspotLayer" class="xr-hotspot-layer" aria-label="3D inspection hotspots"></div>
+            <div class="xr-3d-badge"><span>3D</span><small id="xrRenderStatus">Model ready</small></div>
+            <div class="alignment-frame"><i></i><i></i><i></i><i></i></div>
+            <div class="xr-hint" id="xrHint">Move the overlay onto the component, then tap Lock.</div>
+          </div>
+          <div class="xr-toolbar xr-toolbar-3d" aria-label="3D XR controls">
+            <button id="moveModeBtn" class="accent"><span>✥</span><small>Move</small></button>
+            <button id="rotateModeBtn"><span>↻</span><small>Rotate</small></button>
+            <button id="zoomOutBtn"><span>−</span><small>Smaller</small></button>
+            <button id="zoomInBtn"><span>+</span><small>Larger</small></button>
+            <button id="sensorBtn"><span>◈</span><small>Stabilize</small></button>
+            <button id="resetOverlayBtn"><span>↺</span><small>Reset</small></button>
+            <button id="lockXrBtn"><span>⌖</span><small>Anchor</small></button>
+            <button id="voiceToggleBtn"><span>🎙</span><small>Voice</small></button>
+          </div>
+          <div class="xr-control-help"><b id="xrGestureTitle">Move model</b><span id="xrGestureHelp">Drag the 3D model onto the component. Pinch to resize.</span></div>
+
+          <article class="inspection-card">
+            <div class="inspection-title"><div><span id="pointCode" class="code-chip">LG-01</span><h2 id="pointTitle">Tyre and wheel condition</h2></div><button id="speakStepBtn" class="round-btn" aria-label="Read instruction">🔊</button></div>
+            <p id="pointInstruction">Inspect the visible area for abnormal condition.</p>
+            <div class="warning-line"><span>⚠</span><p id="pointWarning">Follow the approved safety procedure.</p></div>
+            <div class="decision-grid"><button data-decision="Pass" class="pass">✓<span>Pass</span></button><button data-decision="Fail" class="fail">!<span>Defect</span></button><button data-decision="N/A" class="na">—<span>N/A</span></button></div>
+            <label class="note-field"><span>Observation <em>optional unless defect</em></span><textarea id="findingNote" rows="2" placeholder="Describe what you observed…"></textarea></label>
+            <div class="evidence-row"><button id="captureEvidenceBtn" class="secondary-btn">📷 Add evidence</button><span id="evidenceCount">0 photos</span></div>
+            <div class="navigation-row"><button id="previousPointBtn" class="secondary-btn">← Previous</button><button id="nextPointBtn" class="primary-btn">Next point →</button></div>
+          </article>
+
+          <div id="voicePanel" class="voice-panel hidden">
+            <div><span id="voicePulse" class="voice-pulse"></span><b id="voiceStatus">Hands-free ready</b><small>Say a command or tap one below.</small></div>
+            <div class="command-chips"><button data-command="next point">Next point</button><button data-command="record pass">Record pass</button><button data-command="record defect">Record defect</button><button data-command="repeat instruction">Repeat</button><button data-command="take photo">Take photo</button></div>
+          </div>
+        </div>
+
+        <div id="xrStep4" class="xr-step">
+          <div class="success-hero"><span>✓</span><h1>Inspection ready to save</h1><p>Review the result before creating the training record.</p></div>
+          <div id="xrSummary" class="summary-card"></div>
+          <label class="note-field"><span>Inspector name</span><input id="xrInspector" value="AeroFleetX User"></label>
+          <label class="note-field"><span>Supervisor / instructor</span><input id="xrSupervisor" placeholder="Optional for training"></label>
+          <button id="saveInspectionBtn" class="primary-btn full">Save inspection record</button>
+          <button id="restartInspectionBtn" class="secondary-btn full">Start another inspection</button>
+        </div>
+      </section>
+
+      <section id="training" class="screen">
+        <div id="trainingChooser">
+          <div class="page-intro intro-with-help"><div><span class="eyebrow">INTERACTIVE 3D MAINTENANCE TRAINING</span><h1>Choose a procedure</h1><p>Practise component identification, tool selection, safety checks and procedure order.</p></div><button class="tutorial-btn" data-tutorial="training">▶ Show me how</button></div>
+          <div class="mode-switch"><button class="selected" data-training-mode="Guided">Guided learning</button><button data-training-mode="Assessment">Scored assessment</button></div>
+          <div class="training-mode-note"><span>Guided</span><p>Highlighted parts, hints and immediate feedback are available. Switch to Assessment when ready.</p></div>
+          <div id="scenarioCards" class="scenario-list"></div>
+        </div>
+
+        <div id="trainingWorkspace" class="training-workspace hidden">
+          <div class="training-workspace-head">
+            <button id="exitTrainingBtn" class="training-back-btn">‹ Procedures</button>
+            <div><span id="trainingAircraftBadge" class="training-aircraft-badge">TRAINING</span><b id="trainingWorkspaceTitle">Maintenance procedure</b></div>
+            <button id="trainingRestartBtn" class="training-icon-btn" aria-label="Restart training">↻</button>
+          </div>
+
+          <article class="training-sim-card" id="trainingStage">
+            <canvas id="trainingCanvas" aria-label="Interactive 3D maintenance model"></canvas>
+            <div id="trainingHotspotLayer" class="training-hotspot-layer"></div>
+            <div class="training-hud"><span id="trainingStepHud">Step 1/5</span><span id="trainingScoreHud">100 points</span></div>
+            <div class="training-model-label"><span id="trainingModelName">3D component trainer</span><small>Drag to rotate · pinch to zoom · tap a numbered part</small></div>
+            <div class="training-view-controls" aria-label="3D model controls">
+              <button id="trainingRotateLeftBtn" aria-label="Rotate left">↶</button>
+              <button id="trainingResetViewBtn" aria-label="Reset view">⌂</button>
+              <button id="trainingRotateRightBtn" aria-label="Rotate right">↷</button>
+              <button id="trainingZoomOutBtn" aria-label="Zoom out">−</button>
+              <button id="trainingZoomInBtn" aria-label="Zoom in">＋</button>
+            </div>
+          </article>
+
+          <article class="training-current-card">
+            <div class="training-current-head"><div><span class="eyebrow" id="trainingAta">ATA 32</span><span id="trainingModeBadge" class="mode-badge guided">GUIDED</span></div><button id="trainingSpeakBtn" class="training-listen-btn">🔊 Listen</button></div>
+            <div class="training-progress-track"><i id="trainingProgressBar"></i></div>
+            <span id="trainingStepKicker" class="training-step-kicker">STEP 1 OF 5</span>
+            <h2 id="trainingCurrentAction">Secure the aircraft and work area</h2>
+            <p id="trainingCurrentPurpose" class="training-purpose">Confirm the aircraft is safe before beginning the maintenance task.</p>
+            <div class="warning-line compact"><span>⚠</span><p id="trainingSafety"></p></div>
+            <div id="trainingFeedback" class="training-feedback neutral"><span>◎</span><p>Start by selecting the highlighted component in the 3D model.</p></div>
+            <div class="training-inline-actions"><button id="trainingHintBtn" class="secondary-btn">Show hint</button><button id="trainingStepListBtn" class="secondary-btn">View all steps</button></div>
+            <div id="trainingSteps" class="training-steps compact-steps hidden"></div>
+          </article>
+
+          <article class="training-action-panel">
+            <section class="training-check-block"><span class="training-check-number">1</span><div><h3>Select the component</h3><p id="trainingPartInstruction">Tap the highlighted numbered point on the 3D model.</p><div id="trainingPartStatus" class="selection-status">No component selected</div></div></section>
+            <section class="training-check-block"><span class="training-check-number">2</span><div><h3>Select the required tool</h3><p>Choose the tool you would use for this step.</p><div id="toolChoices" class="tool-grid premium-tools"></div></div></section>
+            <section class="training-check-block safety-confirm-block"><span class="training-check-number">3</span><label><input id="trainingSafetyConfirm" type="checkbox"><span><b>Safety instruction checked</b><small>I have read the warning and confirmed the training area is controlled.</small></span></label></section>
+          </article>
+
+          <div class="training-sticky-action">
+            <button id="performTrainingBtn" class="primary-btn full">Confirm and perform step</button>
+            <button id="finishTrainingBtn" class="text-btn full">Finish training early</button>
+          </div>
+
+          <article id="trainingResultCard" class="training-result-card hidden">
+            <div class="result-ring"><strong id="trainingFinalScore">0</strong><span>/100</span></div>
+            <div><span class="eyebrow">TRAINING RESULT</span><h2 id="trainingResultTitle">Procedure complete</h2><p id="trainingResultSummary"></p></div>
+            <div id="trainingResultMetrics" class="training-result-metrics"></div>
+            <button id="trainingResultRetryBtn" class="primary-btn full">Repeat this procedure</button>
+            <button id="trainingResultProceduresBtn" class="secondary-btn full">Choose another procedure</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="schedule" class="screen">
+        <div class="page-intro row schedule-intro"><div><span class="eyebrow">MAINTENANCE MISSION CONTROL</span><h1>Plan and control maintenance</h1><p>Coordinate line, scheduled, unscheduled and training maintenance from one operational agenda.</p><button class="tutorial-btn inline" data-tutorial="schedule">▶ Show me how</button><button class="tutorial-btn inline" data-open="checks">Open maintenance programs</button></div><button id="newScheduleBtn" class="round-add" aria-label="Add scheduled maintenance">+</button></div>
+
+        <div class="schedule-kpis">
+          <button data-schedule-filter="Today"><strong id="schedToday">0</strong><span>Due today</span></button>
+          <button data-schedule-filter="Upcoming"><strong id="schedUpcoming">0</strong><span>Next 7 days</span></button>
+          <button data-schedule-filter="Overdue"><strong id="schedOverdue">0</strong><span>Overdue</span></button>
+          <button data-schedule-filter="All"><strong id="schedTotal">0</strong><span>Scheduled</span></button>
+        </div>
+
+        <div id="scheduleAlert" class="schedule-alert hidden"></div>
+
+        <section class="schedule-calendar-card">
+          <div class="calendar-head"><button id="prevMonthBtn" aria-label="Previous month">‹</button><div><span class="eyebrow">CALENDAR</span><h2 id="calendarMonthLabel"></h2></div><button id="nextMonthBtn" aria-label="Next month">›</button></div>
+          <div class="calendar-weekdays"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+          <div id="scheduleCalendar" class="schedule-calendar"></div>
+        </section>
+
+        <div class="schedule-controls">
+          <div class="filter-chips schedule-filter-chips"><button class="selected" data-schedule-filter="Upcoming">Upcoming</button><button data-schedule-filter="Today">Today</button><button data-schedule-filter="Overdue">Overdue</button><button data-schedule-filter="Completed">Completed</button><button data-schedule-filter="All">All</button></div>
+          <label class="compact-select"><span>Aircraft</span><select id="scheduleAircraftFilter"><option value="All">All aircraft</option><option>TRAINING-C130J-01</option><option>DEMO-B737-01</option><option>DEMO-B787-01</option><option>DEMO-B777-01</option><option>GENERIC-TRAINER</option></select></label>
+        </div>
+
+        <div class="schedule-list-head"><div><span class="eyebrow">AGENDA</span><h2 id="scheduleListTitle">Upcoming work</h2></div><button id="exportScheduleBtn" class="small-btn">Export calendar</button></div>
+        <div id="scheduleList" class="schedule-list"></div>
+      </section>
+
+      <section id="checks" class="screen">
+        <div class="page-intro intro-with-help"><div><span class="eyebrow">MAINTENANCE PROGRAMS</span><h1>Line, A, B, C and D maintenance planning</h1><p>Build research task packages, monitor progress and connect them with Mission Control.</p></div><button class="tutorial-btn" data-tutorial="checks">▶ Show me how</button></div>
+
+        <div class="info-card check-safety-note"><span>ⓘ</span><p><b>Training template only.</b> Letter checks are operator-defined task packages. Actual tasks, intervals, applicability and release requirements must come from the current approved Aircraft Maintenance Programme and controlled maintenance data.</p></div>
+
+        <section class="check-control-card">
+          <label><span>Aircraft / training asset</span><select id="checkAircraft"><option>DEMO-B737-01</option><option>DEMO-B787-01</option><option>DEMO-B777-01</option><option>TRAINING-C130J-01</option><option>GENERIC-TRAINER</option></select></label>
+          <label><span>Package status</span><select id="checkPackageStatus"><option>Planning</option><option>In progress</option><option>Ready for review</option><option>Completed</option></select></label>
+        </section>
+
+        <div id="checkTypeCards" class="check-type-grid"></div>
+
+        <section id="checkOverview" class="check-overview-card">
+          <div class="check-overview-head"><div><span id="checkTypeBadge" class="check-type-badge">A</span><div><span class="eyebrow">SELECTED PACKAGE</span><h2 id="checkTypeTitle">A Check</h2></div></div><strong id="checkProgressText">0%</strong></div>
+          <p id="checkTypeDescription"></p>
+          <div class="check-progress-track"><i id="checkProgressBar"></i></div>
+          <div class="check-summary-grid"><div><strong id="checkDoneCount">0</strong><span>Completed</span></div><div><strong id="checkRemainingCount">0</strong><span>Remaining</span></div><div><strong id="checkUpdatedText">Not saved</strong><span>Last update</span></div></div>
+        </section>
+
+        <div class="check-list-heading"><div><span class="eyebrow">TRAINING TASK PACKAGE</span><h2>Typical task groups</h2></div><button id="checkSelectAllBtn" class="small-btn">Complete all</button></div>
+        <div id="checkTaskGroups" class="check-task-groups"></div>
+
+        <div class="check-action-stack">
+          <button id="saveCheckBtn" class="primary-btn full">Save check progress</button>
+          <button id="scheduleCheckBtn" class="secondary-btn full">Add this check to Schedule</button>
+          <button id="checkWorkOrderBtn" class="secondary-btn full">Create check work order</button>
+          <button id="exportCheckBtn" class="text-btn full">Export check package</button>
+          <button id="resetCheckBtn" class="text-btn full danger-text">Reset this training package</button>
+        </div>
+      </section>
+
+      <section id="predictive" class="screen">
+        <div class="page-intro intro-with-help"><div><span class="eyebrow">PREDICTIVE INTELLIGENCE</span><h1>Turn condition data into explainable action</h1><p>AeroFleetX combines simulated condition trends, local maintenance history and transparent risk rules to prioritize review across the maintenance lifecycle.</p></div><button class="tutorial-btn" data-tutorial="predictive">▶ Show me how</button></div>
+
+        <div class="info-card predictive-notice"><span>ⓘ</span><p><b>Educational prototype.</b> The values below are simulated. Real predictive maintenance requires validated aircraft data, approved engineering rules and authorized maintenance decisions.</p></div>
+
+        <section class="predictive-control-card">
+          <label><span>Aircraft</span><select id="predictiveAircraft"><option>DEMO-B777-01</option><option>DEMO-B737-01</option><option>DEMO-B787-01</option><option>TRAINING-C130J-01</option></select></label>
+          <label><span>Demo condition</span><select id="predictiveProfile"><option value="c-check">Maintenance-event preparation</option><option value="routine">Routine operation</option><option value="degrading">Developing fault</option></select></label>
+          <div class="predictive-control-actions"><button id="runPredictionBtn" class="primary-btn">Run health analysis</button><button id="simulateFlightBtn" class="secondary-btn">Simulate next 10 cycles</button></div>
+        </section>
+
+        <div class="predictive-summary-grid">
+          <article><span>Aircraft health</span><strong id="predictiveHealth">--</strong><small>Calculated component score</small></article>
+          <article><span>High risk</span><strong id="predictiveHigh">0</strong><small>Immediate review items</small></article>
+          <article><span>Medium risk</span><strong id="predictiveMedium">0</strong><small>Plan inspection soon</small></article>
+          <article><span>Next action</span><strong id="predictiveNext">--</strong><small>Estimated cycles</small></article>
+        </div>
+
+        <section class="section-card predictive-explainer">
+          <div class="section-title"><div><span class="eyebrow">HOW TO READ IT</span><h2>Simple risk levels</h2></div></div>
+          <div class="risk-key"><span class="risk-low">LOW</span><p>Continue monitoring.</p><span class="risk-medium">MEDIUM</span><p>Plan inspection.</p><span class="risk-high">HIGH</span><p>Review and create maintenance action.</p></div>
+        </section>
+
+        <div class="section-title predictive-list-title"><div><span class="eyebrow">COMPONENT HEALTH</span><h2>Current predictions</h2></div><span id="predictionTimestamp" class="muted-text">Not analysed</span></div>
+        <div id="predictiveComponentList" class="predictive-component-list"></div>
+
+        <section class="c-check-priority-card maintenance-priority-card">
+          <div class="section-title"><div><span class="eyebrow">MAINTENANCE DECISION SUPPORT</span><h2>Recommended maintenance priorities</h2></div><button id="openCCheckBtn" class="text-btn">Open Mission Control</button></div>
+          <p>These explainable priorities can support line, base, reliability or scheduled-maintenance planning discussions.</p>
+          <div id="cCheckPriorityList" class="c-check-priority-list"></div>
+        </section>
+
+        <div class="check-action-stack">
+          <button id="createPredictiveWorkOrderBtn" class="primary-btn full">Create work order for highest-risk item</button>
+          <button id="schedulePredictiveBtn" class="secondary-btn full">Add recommended inspection to Schedule</button>
+          <button id="exportPredictiveBtn" class="secondary-btn full">Export predictive report</button>
+          <button id="resetPredictiveBtn" class="text-btn full danger-text">Reset simulated data</button>
+        </div>
+      </section>
+
+      <section id="tasks" class="screen">
+        <div class="page-intro row"><div><span class="eyebrow">MAINTENANCE CONTROL</span><h1>Work orders</h1><p>See what needs attention without searching through complex menus.</p><button class="tutorial-btn inline" data-tutorial="tasks">▶ Show me how</button></div><button id="newTaskBtn" class="round-add">+</button></div>
+        <div class="filter-chips"><button class="selected" data-task-filter="Open">Open</button><button data-task-filter="In progress">In progress</button><button data-task-filter="Completed">Completed</button><button data-task-filter="All">All</button></div>
+        <div id="taskList" class="task-list"></div>
+      </section>
+
+      <section id="results" class="screen">
+        <div class="page-intro intro-with-help"><div><span class="eyebrow">REVIEW</span><h1>Results and activity</h1><p>Your inspection, training and maintenance records in one place.</p></div><button class="tutorial-btn" data-tutorial="results">▶ Show me how</button></div>
+        <div id="resultsMetrics" class="result-metrics"></div>
+        <div id="activityList" class="activity-list"></div>
+        <button id="exportDataBtn" class="secondary-btn full">Export project data</button>
+      </section>
+
+      <section id="more" class="screen">
+        <div class="page-intro intro-with-help"><div><span class="eyebrow">DIGITAL OPERATIONS</span><h1>Connected operational tools</h1><p>Reliability, shift handover, AOG, engineering support and quality workflows in one research environment.</p></div><button class="tutorial-btn" data-tutorial="more">▶ Show me how</button></div>
+        <label class="search-box"><span>⌕</span><input id="toolSearch" placeholder="Search tools, e.g. handover or calibration"></label>
+        <div id="advancedGroups"></div>
+      </section>
+
+      <section id="demos" class="screen">
+        <div class="page-intro intro-with-help"><div><span class="eyebrow">FLEET & DIGITAL AIRCRAFT</span><h1>Explore the maintenance digital fleet</h1><p>Each research aircraft connects condition intelligence, XR zones, training, scheduled work and digital records.</p></div><button class="tutorial-btn" data-tutorial="demos">▶ Show me how</button></div>
+        <div id="aircraftDemoCards" class="aircraft-demo-grid"></div>
+        <div class="info-card"><span>ⓘ</span><p><b>Educational demo content only.</b> These scenarios do not contain approved Boeing or C-130J maintenance procedures, limits or release instructions.</p></div>
+      </section>
+
+
+      <section id="safety" class="screen">
+        <div class="page-intro"><span class="eyebrow">TRUST CENTRE</span><h1>Safety, privacy and research limits</h1><p>AeroFleetX is designed to demonstrate future maintenance workflows without presenting simulated outputs as approved operational decisions.</p></div>
+        <div class="release-boundary-card"><span>RESEARCH EDITION</span><h2>Digital maintenance assistant — not an approval authority</h2><p>This application does not replace approved maintenance manuals, operator procedures, regulatory requirements, authorized engineering judgement or release-to-service processes.</p></div>
+        <div class="trust-grid">
+          <article><b>Simulated intelligence</b><p>Health scores, thresholds, predictions and aircraft values are demonstration data unless clearly identified otherwise.</p></article>
+          <article><b>Local-first records</b><p>Prototype records are stored on this device. Export or erase them at any time.</p></article>
+          <article><b>Permission control</b><p>Camera and microphone access are requested only for inspection or optional voice workflows.</p></article>
+          <article><b>Human authority</b><p>Qualified personnel and controlled technical data remain authoritative for real aircraft maintenance.</p></article>
+        </div>
+        <section class="section-card release-info-card"><div class="section-title"><div><span class="eyebrow">BUILD</span><h2>AeroFleetX 1.0.0 Research Edition</h2></div><span class="data-state-badge">OFFLINE FIRST</span></div><p>Connected modules: Fleet Intelligence, XR Vision, Predictive Intelligence, Maintenance Mission Control, Maintenance Programs, Work Orders, Digital Operations and Training Academy.</p></section>
+        <section class="section-card privacy-policy-card"><div class="section-title"><div><span class="eyebrow">PRIVACY POLICY</span><h2>Local-first by design</h2></div><span class="data-state-badge">NO ACCOUNT</span></div><p><b>Data collection:</b> This Research Edition does not transmit personal information, maintenance records, camera images, audio, or usage analytics to TROJANS servers. The application has no advertising SDK, analytics SDK, login system, or cloud account.</p><p><b>Device processing:</b> Camera, optional microphone, selected images, inspection evidence, maintenance records, and training results are processed locally on the device. Android permission controls remain available in system settings.</p><p><b>Storage and deletion:</b> Demonstration records are kept in local WebView storage. Exports are created only when the user requests them. Use “Erase all local app data” below or clear the app’s storage in Android Settings to delete local records.</p><p><b>Research limits:</b> Do not enter confidential airline, passenger, employee, or controlled technical data into this public demonstration build.</p></section>
+        <button id="safetyExportBtn" class="secondary-btn full">Export my local research data</button>
+        <button id="clearResearchDataBtn" class="text-btn full danger-text">Erase all local app data</button>
+      </section>
+
+      <section id="tutorials" class="screen">
+        <div class="page-intro"><span class="eyebrow">LEARNING CENTRE</span><h1>Learn every app option</h1><p>Open a short walkthrough, then launch the related feature with demo data.</p></div>
+        <label class="search-box"><span>⌕</span><input id="tutorialSearch" placeholder="Search tutorials, e.g. XR, work order, tool control"></label>
+        <div id="tutorialCards" class="tutorial-list"></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="active" data-nav="home"><span>⌂</span><small>Command</small></button>
+      <button data-nav="xr"><span>◎</span><small>Inspect</small></button>
+      <button data-nav="training"><span>◇</span><small>Academy</small></button>
+      <button data-nav="schedule"><span>◫</span><small>Work</small></button>
+      <button data-nav="more"><span>•••</span><small>Tools</small></button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <div id="helpSheet" class="sheet-backdrop hidden">
+    <section class="bottom-sheet"><div class="sheet-handle"></div><div class="sheet-head"><h2>Help and tutorials</h2><button data-close-sheet>×</button></div><p class="sheet-description">Open help for the current page or browse every tutorial.</p><button id="contextHelpBtn" class="primary-btn full">Show current-page tutorial</button><button id="allTutorialsBtn" class="secondary-btn full">Open Learning Centre</button><button data-close-sheet class="text-btn full">Close</button></section>
+  </div>
+
+  <div id="taskModal" class="modal-backdrop hidden"><section class="modal-card"><div class="sheet-head"><h2>New work order</h2><button data-close-task>×</button></div><label><span>Task title</span><input id="taskTitle" placeholder="e.g. Inspect suspected hydraulic leak"></label><label><span>Aircraft</span><select id="taskAircraft"><option>TRAINING-C130J-01</option><option>DEMO-B737-01</option><option>DEMO-B787-01</option><option>DEMO-B777-01</option><option>GENERIC-TRAINER</option></select></label><label><span>Priority</span><select id="taskPriority"><option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option></select></label><label><span>Assigned to</span><input id="taskAssignee" value="AeroFleetX User"></label><button id="saveTaskBtn" class="primary-btn full">Create work order</button></section></div>
+
+
+  <div id="scheduleModal" class="modal-backdrop hidden"><section class="modal-card schedule-modal-card"><div class="sheet-head"><div><span class="eyebrow">MAINTENANCE PLANNER</span><h2 id="scheduleModalTitle">Schedule maintenance</h2></div><button data-close-schedule>×</button></div>
+    <label><span>Maintenance task</span><input id="scheduleTitle" placeholder="e.g. A-check preparation"></label>
+    <div class="form-grid-two"><label><span>Aircraft</span><select id="scheduleAircraft"><option>TRAINING-C130J-01</option><option>DEMO-B737-01</option><option>DEMO-B787-01</option><option>DEMO-B777-01</option><option>GENERIC-TRAINER</option></select></label><label><span>Category</span><select id="scheduleCategory"><option>Scheduled inspection</option><option>A/B/C/D check package</option><option>Line maintenance</option><option>Component change</option><option>Calibration</option><option>Training</option><option>Reliability review</option></select></label></div>
+    <div class="form-grid-two"><label><span>Due date</span><input id="scheduleDate" type="date"></label><label><span>Time</span><input id="scheduleTime" type="time" value="09:00"></label></div>
+    <div class="form-grid-two"><label><span>Priority</span><select id="schedulePriority"><option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option></select></label><label><span>Repeat</span><select id="scheduleRecurrence"><option>None</option><option>Daily</option><option>Weekly</option><option>Monthly</option><option>Every 3 months</option><option>Every 6 months</option><option>Yearly</option></select></label></div>
+    <label><span>Assigned team / AME</span><input id="scheduleAssignee" value="AeroFleetX Maintenance Team"></label>
+    <label><span>Notes</span><textarea id="scheduleNotes" rows="3" placeholder="Tools, parts, hangar slot or preparation notes"></textarea></label>
+    <button id="saveScheduleBtn" class="primary-btn full">Add to schedule</button>
+  </section></div>
+
+  <div id="toolSheet" class="sheet-backdrop hidden"><section class="bottom-sheet tall"><div class="sheet-handle"></div><div class="sheet-head"><div><span id="toolSheetCategory" class="eyebrow"></span><h2 id="toolSheetTitle"></h2></div><button data-close-tool>×</button></div><p id="toolSheetDescription" class="sheet-description"></p><button id="toolTutorialBtn" class="tutorial-btn full">▶ How to use this tool</button><div id="toolSheetContent"></div><button data-close-tool class="secondary-btn full">Close</button></section></div>
+
+  <div id="tutorialSheet" class="sheet-backdrop hidden"><section class="bottom-sheet tall"><div class="sheet-handle"></div><div class="sheet-head"><div><span class="eyebrow">STEP-BY-STEP TUTORIAL</span><h2 id="tutorialTitle"></h2></div><button data-close-tutorial>×</button></div><p id="tutorialIntro" class="sheet-description"></p><div id="tutorialSteps" class="tutorial-steps"></div><div class="tutorial-actions"><button id="tutorialTryBtn" class="primary-btn full">Try this feature</button><button data-close-tutorial class="secondary-btn full">Close tutorial</button></div></section></div>
+
+  <script src="xr3d.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

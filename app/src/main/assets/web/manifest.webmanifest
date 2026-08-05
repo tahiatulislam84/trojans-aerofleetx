@@ -1,0 +1,23 @@
+{
+  "name": "TROJANS AeroFleetX \u2014 Research Edition",
+  "short_name": "AeroFleetX",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#061d2b",
+  "theme_color": "#071b2b",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "description": "Connected fleet intelligence, XR inspection, predictive-risk simulation, maintenance mission control and aviation technical training research platform",
+  "id": "com.trojans.aerofleetx.mobileapp",
+  "version": "1.0.0"
+}
