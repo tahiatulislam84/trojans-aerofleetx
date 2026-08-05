@@ -55,3 +55,8 @@ android {
 
     buildFeatures { buildConfig = false }
 }
+
+
+dependencies {
+    implementation("androidx.activity:activity:1.8.0")
+}

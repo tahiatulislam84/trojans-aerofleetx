@@ -1,7 +1,6 @@
 package com.trojans.aerofleetx.mobileapp;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -27,6 +26,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import androidx.activity.ComponentActivity;
+import androidx.activity.OnBackPressedCallback;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,7 +44,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public final class AeroInspectActivity extends Activity {
+public final class AeroInspectActivity extends ComponentActivity {
     private static final String APP_ORIGIN = "https://app.local";
     private static final String START_URL = APP_ORIGIN + "/index.html";
     private static final int REQUEST_WEB_PERMISSIONS = 5101;
@@ -67,10 +69,25 @@ public final class AeroInspectActivity extends Activity {
                 ViewGroup.LayoutParams.MATCH_PARENT));
         setContentView(webView);
         configureWebView();
+        configureBackNavigation();
 
         if (savedInstanceState == null || webView.restoreState(savedInstanceState) == null) {
             webView.loadUrl(START_URL);
         }
+    }
+
+    private void configureBackNavigation() {
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (webView.canGoBack()) {
+                    webView.goBack();
+                    return;
+                }
+                setEnabled(false);
+                getOnBackPressedDispatcher().onBackPressed();
+            }
+        });
     }
 
     private void configureWebView() {
@@ -360,10 +377,6 @@ public final class AeroInspectActivity extends Activity {
     @Override protected void onPause() { webView.onPause(); super.onPause(); }
     @Override protected void onResume() { super.onResume(); webView.onResume(); }
 
-    @Override
-    public void onBackPressed() {
-        if (webView.canGoBack()) webView.goBack(); else super.onBackPressed();
-    }
 
     @Override
     protected void onDestroy() {
