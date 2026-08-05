@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this research prototype, cite the AeroFleetX preprint and this software release."
+title: "TROJANS AeroFleetX"
+type: software
+version: "1.3-no-email-rc2"
+date-released: "2026-08-05"
+authors:
+  - family-names: "Siddique"
+    given-names: "Tahiatul Islam"
+    email: "tahiatulislam84@gmail.com"
+    affiliation: "Aviation and Aerospace University, Bangladesh"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21732389"
+    description: "Version 1.0 preprint record"
+license: MIT
+repository-code: "TO_BE_ADDED_AFTER_GITHUB_PUBLICATION"
