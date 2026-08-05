@@ -112,9 +112,9 @@ public final class AeroInspectActivity extends ComponentActivity {
         WebView.setWebContentsDebuggingEnabled(
                 (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            WebView.startSafeBrowsing(this, null);
-        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+    WebView.startSafeBrowsing(this, null);
+}
 
         webView.setWebViewClient(new LocalAssetWebViewClient());
         webView.setWebChromeClient(new SecureChromeClient());
@@ -389,4 +389,5 @@ public final class AeroInspectActivity extends ComponentActivity {
         ioExecutor.shutdownNow();
         super.onDestroy();
     }
+
 }
