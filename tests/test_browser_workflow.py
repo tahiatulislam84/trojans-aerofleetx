@@ -47,7 +47,7 @@ def test_integrated_browser_workflow():
 
         page.evaluate("openScreen('predictive')")
         assert page.locator('#predictive').is_visible()
-        assert page.locator('#predictiveComponentList .prediction-card').count() >= 4
+        assert page.locator('#predictiveComponentList .predictive-component').count() >= 4
         assert 'warning' in page.locator('#predictiveComponentList').inner_text().lower()
 
         page.locator('#schedulePredictiveBtn').click()
