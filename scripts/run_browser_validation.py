@@ -53,7 +53,7 @@ def main():
         add(checks, 'fleet health value', page.locator('#fleetHealth').inner_text().endswith('%'))
         page.evaluate("openScreen('predictive')")
         add(checks, 'predictive visible', page.locator('#predictive').is_visible())
-        add(checks, 'component cards', page.locator('#predictiveComponentList .prediction-card').count() >= 4)
+        add(checks, 'component cards', page.locator('#predictiveComponentList .predictive-component').count() >= 4)
         add(checks, 'explainability shown', 'warning' in page.locator('#predictiveComponentList').inner_text().lower())
         page.locator('#schedulePredictiveBtn').click()
         add(checks, 'schedule modal opens', page.locator('#scheduleModal').is_visible())
