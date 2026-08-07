@@ -45,6 +45,10 @@ def test_integrated_browser_workflow():
         assert page.locator('#fleetAircraftGrid .fleet-aircraft-card').count() == 4
         assert page.locator('#fleetHealth').inner_text().endswith('%')
 
+        page.wait_for_selector('#tutorialSheet:not(.hidden)')
+        page.locator('#tutorialSheet [data-close-tutorial]').click()
+        assert page.locator('#tutorialSheet').is_hidden()
+
         page.evaluate("openScreen('predictive')")
         assert page.locator('#predictive').is_visible()
         assert page.locator('#predictiveComponentList .predictive-component').count() >= 4
