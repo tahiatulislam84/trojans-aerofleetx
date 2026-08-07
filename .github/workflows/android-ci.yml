@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 35
     steps:
       - name: Check out exact source revision
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Record checked out source revision
         shell: bash
@@ -41,12 +41,12 @@ jobs:
           java-version: "17"
 
       - name: Set up pinned Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
         with:
           gradle-version: "8.13"
 
       - name: Set up Android SDK command-line tools
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
       - name: Install Android SDK packages
         shell: bash
@@ -67,7 +67,7 @@ jobs:
         run: ./gradlew --no-daemon --stacktrace clean lintDebug assembleDebug
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
@@ -85,7 +85,7 @@ jobs:
           pytest -m browser -q
 
       - name: Upload reproducibility evidence
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: aerofleetx-clean-build-evidence-${{ github.sha }}
