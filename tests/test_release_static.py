@@ -114,7 +114,7 @@ def test_clean_build_ci_is_unsigned_and_pinned():
     assert 'AEROFLEETX_UPLOAD_KEYSTORE_BASE64' not in workflow
     assert 'java-version: "17"' in workflow
     assert 'platforms;android-36' in workflow
-    assert 'android-actions/setup-android@v3' in workflow
+    assert 'android-actions/setup-android@v4' in workflow
     assert 'build-tools;35.0.0' in workflow
-    assert 'actions/upload-artifact@v4' in workflow
+    assert 'actions/upload-artifact@v7' in workflow
     assert 'distributionSha256Sum=20f1b1176237254a6fc204d8434196fa11a4cfb387567519c61556e8710aed78' in wrapper
