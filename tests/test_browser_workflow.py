@@ -46,7 +46,7 @@ def test_integrated_browser_workflow():
         assert page.locator('#fleetHealth').inner_text().endswith('%')
 
         page.wait_for_selector('#tutorialSheet:not(.hidden)')
-        page.locator('#tutorialSheet [data-close-tutorial]').click()
+        page.get_by_role('button', name='Close tutorial', exact=True).click()
         assert page.locator('#tutorialSheet').is_hidden()
 
         page.evaluate("openScreen('predictive')")
