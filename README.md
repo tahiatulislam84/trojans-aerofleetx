@@ -1,5 +1,10 @@
 # TROJANS AeroFleetX
 
+**Author:** Tahiatul Islam Siddique  
+**Affiliation:** Aviation and Aerospace University Bangladesh  
+**Research paper:** *TROJANS AeroFleetX: Design and Implementation of an Integrated Mobile Research Platform for Aviation Maintenance Intelligence*  
+**Preprint:** [Zenodo DOI 10.5281/zenodo.21732389](https://doi.org/10.5281/zenodo.21732389)
+
 TROJANS AeroFleetX is an offline-first Android research and education prototype for connected aviation-maintenance workflows. It combines synthetic fleet-health presentation, explainable rule-based maintenance-risk simulation, camera-assisted 3D inspection, maintenance programs, scheduling, digital work orders, local records, and training scenarios.
 
 ## Research status and safety boundary
@@ -69,9 +74,29 @@ The application includes four synthetic aircraft profiles and 18 component templ
 
 Each aircraft can be presented using routine, degrading, and check-preparation profiles. The risk engine is deterministic and threshold-based, except for the optional ten-cycle demonstration, which introduces bounded random degradation for visualization.
 
-## Publications
+## Publication and citation
 
-Preprint DOI: https://doi.org/10.5281/zenodo.21732389
+### Preprint
+
+Tahiatul Islam Siddique (2026).  
+*TROJANS AeroFleetX: Design and Implementation of an Integrated Mobile Research Platform for Aviation Maintenance Intelligence.*  
+Zenodo.  
+https://doi.org/10.5281/zenodo.21732389
+
+The manuscript is a non-peer-reviewed preprint and is licensed under CC BY 4.0.
+
+### BibTeX
+
+```bibtex
+@misc{siddique2026trojans,
+  author = {Siddique, Tahiatul Islam},
+  title = {TROJANS AeroFleetX: Design and Implementation of an Integrated Mobile Research Platform for Aviation Maintenance Intelligence},
+  year = {2026},
+  publisher = {Zenodo},
+  doi = {10.5281/zenodo.21732389},
+  url = {https://doi.org/10.5281/zenodo.21732389}
+}
+```
 
 The paper remains CC BY 4.0. The source code is MIT licensed. The active publication path uses only CC BY-compatible publication options and does not depend on an editor licensing exception.
 
