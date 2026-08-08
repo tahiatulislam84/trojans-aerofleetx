@@ -1,0 +1,23 @@
+{
+  "schema": "aerofleetx.experimental_prognostic_mapping.v1",
+  "status": "research-only",
+  "source_basis": "Existing AeroFleetX review-horizon buckets; not optimized from FD001 official-test outcomes",
+  "mapping": [
+    {"rul_max_inclusive": 10, "review_band": "0-10", "priority": "High"},
+    {"rul_min_exclusive": 10, "rul_max_inclusive": 25, "review_band": "11-25", "priority": "High"},
+    {"rul_min_exclusive": 25, "rul_max_inclusive": 60, "review_band": "26-60", "priority": "Medium"},
+    {"rul_min_exclusive": 60, "rul_max_inclusive": 100, "review_band": "61-100", "priority": "Medium"},
+    {"rul_min_exclusive": 100, "review_band": ">100", "priority": "Low"}
+  ],
+  "invalid_output": {
+    "priority": "Unavailable",
+    "review_band": "Unavailable"
+  },
+  "forbidden_automatic_actions": [
+    "calendar due-date calculation from C-MAPSS cycles",
+    "automatic work-order creation",
+    "automatic maintenance scheduling",
+    "airworthiness determination",
+    "release-to-service decision"
+  ]
+}
