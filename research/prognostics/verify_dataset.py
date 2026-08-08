@@ -14,14 +14,14 @@ def main() -> int:
     args = parser.parse_args()
 
     digest = verify_dataset_archive(args.archive)
-    data = load_fd001(args.archive, verify_hash=False, include_test_truth=False)
-    labeled = add_linear_rul(data.train)
+    train, test, _ = load_fd001(args.archive, verify_hash=False, include_test_truth=False)
+    labeled = add_linear_rul(train)
 
     print(f"SHA-256: {digest}")
-    print(f"Training rows: {len(data.train)}")
-    print(f"Training engines: {data.train.unit_id.nunique()}")
-    print(f"Test rows: {len(data.test)}")
-    print(f"Test engines: {data.test.unit_id.nunique()}")
+    print(f"Training rows: {len(train)}")
+    print(f"Training engines: {train.unit_id.nunique()}")
+    print(f"Test rows: {len(test)}")
+    print(f"Test engines: {test.unit_id.nunique()}")
     print(f"Training RUL range: {int(labeled.RUL.min())}..{int(labeled.RUL.max())}")
     print("Official RUL_FD001.txt was not opened.")
     return 0
