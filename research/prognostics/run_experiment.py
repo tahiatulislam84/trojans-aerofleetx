@@ -6,8 +6,6 @@ import argparse
 import json
 from pathlib import Path
 
-import pandas as pd
-
 from research.prognostics.pipeline import (
     FROZEN_RF_PARAMS,
     evaluate_official_test,
@@ -35,16 +33,15 @@ def main() -> int:
         help="Also run held-out permutation importance (development data only).",
     )
     args = parser.parse_args()
-
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
-    data = load_fd001(
+    train, test, test_rul = load_fd001(
         args.archive,
         verify_hash=True,
         include_test_truth=args.evaluate_official_test,
     )
 
-    outer, tuning = run_development_cv(data.train)
+    outer, tuning = run_development_cv(train)
     summary = summarize_development(outer)
     outer.to_csv(args.output_dir / "outer_cv_results.csv", index=False)
     tuning.to_csv(args.output_dir / "tuning_results.csv", index=False)
@@ -57,7 +54,7 @@ def main() -> int:
     }
 
     if args.explainability:
-        importance = heldout_permutation_importance(data.train, repeats=10)
+        importance = heldout_permutation_importance(train, repeats=10)
         importance.to_csv(args.output_dir / "permutation_importance_foldwise.csv", index=False)
         (
             importance.groupby("feature", as_index=False)
@@ -70,13 +67,13 @@ def main() -> int:
         )
 
     if args.evaluate_official_test:
-        if data.test_rul is None:
+        if test_rul is None:
             raise RuntimeError("Official test truth was not loaded")
-        model, features = frozen_random_forest(data.train)
-        predictions = official_last_cycle_predictions(model, features, data.test)
-        predictions["true_RUL"] = data.test_rul.to_numpy()
+        model, features = frozen_random_forest(train)
+        predictions = official_last_cycle_predictions(model, features, test)
+        predictions["true_RUL"] = test_rul.to_numpy()
         predictions.to_csv(args.output_dir / "official_test_predictions.csv", index=False)
-        manifest["official_test_metrics"] = evaluate_official_test(predictions, data.test_rul)
+        manifest["official_test_metrics"] = evaluate_official_test(predictions, test_rul)
 
     (args.output_dir / "run_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(summary.to_string(index=False))
