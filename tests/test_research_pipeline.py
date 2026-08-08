@@ -1,9 +1,18 @@
 import inspect
 import math
+import sys
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
+
+# Pytest's console-script entry point does not guarantee that the repository
+# root is importable in every CI environment. Add the checked-out project root
+# explicitly so these tests exercise the version-controlled research package.
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from research.prognostics.pipeline import (
     COLUMNS,
