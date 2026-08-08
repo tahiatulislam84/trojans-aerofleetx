@@ -10,6 +10,7 @@ from research.prognostics.pipeline import (
     FROZEN_RF_PARAMS,
     add_linear_rul,
     engine_folds,
+    fit_predict,
     load_fd001,
     macro_engine_metrics,
     map_rul_to_priority,
@@ -80,6 +81,18 @@ def test_snapshot_features_drop_zero_variance_using_training_frame_only():
     assert "sensor_9" in features
     assert "unit_id" not in features
     assert "cycle" not in features
+
+
+def test_model_pipeline_produces_finite_nonnegative_output_without_engine_leakage():
+    data = add_linear_rul(synthetic_training(engines=8, cycles=6))
+    train_ids, val_ids = engine_folds(range(1, 9), n_splits=4, seed=7)[0]
+    assert set(train_ids).isdisjoint(set(val_ids))
+    train = data[data["unit_id"].isin(train_ids)]
+    val = data[data["unit_id"].isin(val_ids)]
+    predictions = fit_predict("ridge", {"alpha": 1.0}, train, val)
+    assert len(predictions) == len(val)
+    assert np.isfinite(predictions).all()
+    assert (predictions >= 0).all()
 
 
 @pytest.mark.parametrize(
