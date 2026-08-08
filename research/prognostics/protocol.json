@@ -1,0 +1,72 @@
+{
+  "schema": "aerofleetx.cmapss.fd001.protocol.v1",
+  "dataset": {
+    "name": "NASA C-MAPSS",
+    "subset": "FD001",
+    "archive_file": "CMAPSSData.zip",
+    "sha256": "74bef434a34db25c7bf72e668ea4cd52afe5f2cf8e44367c55a82bfd91a5a34f",
+    "raw_data_committed": false
+  },
+  "target": {
+    "name": "Remaining Useful Life",
+    "unit": "cycles",
+    "formula": "RUL_i,t = max_cycle_i - cycle_i,t",
+    "primary_definition": "linear",
+    "upper_cap": null
+  },
+  "split": {
+    "unit": "engine_id",
+    "outer_folds": 5,
+    "outer_seed": 42,
+    "inner_folds": 3,
+    "inner_seeds": [4201, 4202, 4203, 4204, 4205],
+    "official_test_policy": "not opened during development/model selection"
+  },
+  "features": {
+    "main_snapshot_excludes": ["unit_id", "cycle"],
+    "zero_variance_rule": "drop using training split only",
+    "full_train_observed_zero_variance": ["setting_3", "sensor_1", "sensor_5", "sensor_10", "sensor_16", "sensor_18", "sensor_19"]
+  },
+  "models": {
+    "mean_rul": "fixed baseline",
+    "age_only_linear": "cycle only",
+    "ridge_alpha_grid": [0.1, 1.0, 10.0, 100.0],
+    "random_forest": {
+      "n_estimators": 100,
+      "max_depth_grid": [10, null],
+      "min_samples_leaf_grid": [1, 5],
+      "max_features_grid": [0.7, 1.0],
+      "random_state": 2026
+    },
+    "hist_gradient_boosting": {
+      "max_iter": 300,
+      "learning_rate_grid": [0.05, 0.1],
+      "max_leaf_nodes_grid": [15, 31],
+      "l2_regularization_grid": [0.0, 1.0],
+      "random_state": 2026
+    }
+  },
+  "metrics": {
+    "development_primary": "macro engine-level RMSE",
+    "development_secondary": ["macro engine-level MAE", "pooled RMSE", "pooled MAE"],
+    "official_test": ["RMSE", "MAE", "NASA asymmetric score"],
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 4242
+  },
+  "frozen_selected_model": {
+    "model_id": "cmapss-fd001-rf-phase5-v1",
+    "algorithm": "RandomForestRegressor",
+    "n_estimators": 100,
+    "max_depth": 10,
+    "max_features": 0.7,
+    "min_samples_leaf": 5,
+    "random_state": 2026
+  },
+  "research_priority_mapping": [
+    {"rul": "<=10", "priority": "High", "review_band": "0-10"},
+    {"rul": "11-25", "priority": "High", "review_band": "11-25"},
+    {"rul": "26-60", "priority": "Medium", "review_band": "26-60"},
+    {"rul": "61-100", "priority": "Medium", "review_band": "61-100"},
+    {"rul": ">100", "priority": "Low", "review_band": ">100"}
+  ]
+}

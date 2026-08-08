@@ -8,3 +8,10 @@
 
 __pycache__/
 .pytest_cache/
+
+# Research data and generated prognostic outputs are reproducible inputs/artifacts,
+# not source-controlled application assets.
+CMAPSSData.zip
+research/prognostics/data/
+research/prognostics/outputs/
+research/prognostics/models/
