@@ -1,0 +1,74 @@
+{
+  "phase": 10,
+  "status": "manuscript-ready evidence consolidated",
+  "baseline_commit": "70d58b88fd4e602938ba99cd502c5a1e9427c4c5",
+  "dataset": {
+    "name": "NASA C-MAPSS FD001",
+    "raw_archive_committed": false,
+    "archive_sha256": "74bef434a34db25c7bf72e668ea4cd52afe5f2cf8e44367c55a82bfd91a5a34f",
+    "training_engines": 100,
+    "training_rows": 20631,
+    "primary_target": "linear RUL in benchmark cycles"
+  },
+  "frozen_model": {
+    "model_id": "cmapss-fd001-rf-phase5-v1",
+    "family": "RandomForest",
+    "params": {
+      "n_estimators": 100,
+      "max_depth": 10,
+      "min_samples_leaf": 5,
+      "max_features": 0.7,
+      "random_state": 2026
+    }
+  },
+  "official_test": {
+    "n_engines": 100,
+    "random_forest": {
+      "rmse": 31.834244416040442,
+      "mae": 23.441132160588622,
+      "nasa_score": 19726.39300370553,
+      "mean_signed_error": 19.11866590228027
+    },
+    "age_only_linear": {
+      "rmse": 39.309866,
+      "mae": 33.457502,
+      "nasa_score": 17239.68325
+    },
+    "paired_rf_vs_age_only": {
+      "rmse_improvement": 7.475622,
+      "rmse_ci95": [1.075209, 13.825102],
+      "mae_improvement": 10.01637,
+      "mae_ci95": [4.008223, 15.84878]
+    }
+  },
+  "failure_mode": {
+    "optimistic_engines": 79,
+    "optimistic_pct": 79.0,
+    "pct_nasa_penalty_from_optimistic_errors": 99.711522,
+    "top5_share_of_rf_nasa_score_pct": 80.450367,
+    "no_post_test_retuning": true
+  },
+  "heldout_permutation_importance_top5": [
+    {"feature": "sensor_9", "mean_delta_macro_rmse": 6.161345},
+    {"feature": "sensor_11", "mean_delta_macro_rmse": 5.126365},
+    {"feature": "sensor_14", "mean_delta_macro_rmse": 1.486227},
+    {"feature": "sensor_4", "mean_delta_macro_rmse": 1.271494},
+    {"feature": "sensor_12", "mean_delta_macro_rmse": 1.04534}
+  ],
+  "priority_audit": {
+    "accuracy": 0.72,
+    "balanced_accuracy": 0.746245,
+    "macro_f1": 0.745478,
+    "under_prioritized": 26,
+    "over_prioritized": 2,
+    "research_only": true
+  },
+  "authority_boundaries": {
+    "real_aircraft_validation": false,
+    "calendar_day_conversion_from_cmapss_cycles": false,
+    "automatic_authoritative_work_orders": false,
+    "automatic_maintenance_scheduling": false,
+    "airworthiness_decision": false,
+    "release_to_service_authority": false
+  }
+}
