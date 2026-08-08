@@ -1,0 +1,27 @@
+{
+  "status": "reference snapshot from Phases 5-7; do not use for retuning",
+  "phase5_development": {
+    "RandomForest": {"mean_macro_engine_rmse": 36.925766, "mean_macro_engine_mae": 29.026843},
+    "HistGradientBoosting": {"mean_macro_engine_rmse": 37.069458, "mean_macro_engine_mae": 29.349062},
+    "Age-only Linear": {"mean_macro_engine_rmse": 38.148307, "mean_macro_engine_mae": 34.885745},
+    "Ridge": {"mean_macro_engine_rmse": 39.242972, "mean_macro_engine_mae": 32.153192},
+    "Mean RUL": {"mean_macro_engine_rmse": 63.933715, "mean_macro_engine_mae": 54.362318}
+  },
+  "phase5_official_test": {
+    "RandomForest": {"RMSE": 31.834244, "MAE": 23.441132, "NASA_score": 19726.393004, "mean_error": 19.118666},
+    "Age-only Linear": {"RMSE": 39.309866, "MAE": 33.457502, "NASA_score": 17239.683250, "mean_error": 16.330201},
+    "Mean RUL": {"RMSE": 52.624858, "MAE": 40.879302, "NASA_score": 269287.497186, "mean_error": 32.287862}
+  },
+  "phase6": {
+    "optimistic_predictions": 79,
+    "test_engines": 100,
+    "top_permutation_features": ["sensor_9", "sensor_11", "sensor_14", "sensor_4", "sensor_12"]
+  },
+  "phase7_priority_audit": {
+    "matched": 72,
+    "under_prioritized": 26,
+    "over_prioritized": 2,
+    "balanced_accuracy": 0.7462,
+    "macro_f1": 0.7455
+  }
+}
