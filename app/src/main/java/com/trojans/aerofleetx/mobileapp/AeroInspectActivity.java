@@ -47,6 +47,7 @@ import java.util.concurrent.Executors;
 public final class AeroInspectActivity extends ComponentActivity {
     private static final String APP_ORIGIN = "https://app.local";
     private static final String START_URL = APP_ORIGIN + "/index.html";
+    private static final String STUDY_URL = APP_ORIGIN + "/experiments/landing-gear-camera/index.html";
     private static final int REQUEST_WEB_PERMISSIONS = 5101;
     private static final int REQUEST_FILE_CHOOSER = 5102;
     private static final long MAX_EXPORT_BYTES = 10L * 1024L * 1024L;
@@ -72,7 +73,9 @@ public final class AeroInspectActivity extends ComponentActivity {
         configureBackNavigation();
 
         if (savedInstanceState == null || webView.restoreState(savedInstanceState) == null) {
-            webView.loadUrl(START_URL);
+            boolean cameraStudy = getIntent().getComponent() != null
+                    && getIntent().getComponent().getClassName().endsWith(".LandingGearStudyLauncher");
+            webView.loadUrl(cameraStudy ? STUDY_URL : START_URL);
         }
     }
 
