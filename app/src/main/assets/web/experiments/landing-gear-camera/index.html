@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AeroFleetX · Landing gear camera study</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#071925;color:#eaf6fb;font:16px system-ui,sans-serif}main{max-width:850px;margin:auto;padding:16px}h1{font-size:1.5rem}p,small{line-height:1.5;color:#c5d6df}label{display:block;margin:12px 0}select,button{font:inherit;border:1px solid #7499ab;border-radius:8px;padding:10px;background:#17384a;color:white}button{cursor:pointer}button:disabled{opacity:.5}.stage{position:relative;aspect-ratio:4/3;background:#102c3a;overflow:hidden;border:1px solid #577b8c;border-radius:12px}.stage video,.stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.stage canvas{touch-action:none}.hotspots{position:absolute;inset:0;pointer-events:none}.xr-3d-hotspot{position:absolute;pointer-events:auto;border-radius:50%;width:35px;height:35px;padding:0;background:#f8c244;color:#14222a;font-weight:bold}.xr-3d-hotspot.active{background:#63edbb}.controls{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.panel{background:#113144;padding:16px;border-radius:12px;margin-top:12px}.notice{border-left:4px solid #e8b950;padding-left:12px}#status{min-height:1.5em}a{color:#9ee3ff}
+</style>
+</head>
+<body><main>
+<h1>Landing gear camera study</h1>
+<p class="notice">Research visualization only. The model is generic and its points are illustrative. It does not recognize a CRESCO or Cessna 172, locate real aircraft components, or provide an approved inspection sequence. Follow current approved aircraft and operator data for actual work.</p>
+<label>Aircraft context <select id="aircraft"><option value="cresco">CRESCO (variant to confirm)</option><option value="c172">Cessna 172 (variant to confirm)</option></select></label>
+<div class="stage" id="stage"><video id="video" autoplay muted playsinline></video><canvas id="model"></canvas><div class="hotspots" id="hotspots"></div></div>
+<div class="controls"><button id="start">Start camera</button><button id="stop" disabled>Stop camera</button><button id="reset">Reset overlay</button><button id="anchor">Hold overlay</button></div>
+<p id="status" role="status">Camera is off. Start the camera, then drag the model over the gear. Use two fingers to resize; drag horizontally with the Rotate button selected to turn it.</p>
+<div class="controls"><button id="move">Move</button><button id="rotate">Rotate</button><button id="previous">Previous point</button><button id="next">Next point</button></div>
+<section class="panel"><h2 id="point-title"></h2><p id="point-detail"></p><small>Illustrative orientation only. No pass/fail or airworthiness decision is generated.</small></section>
+<p><a href="../../index.html">Open the original AeroFleetX app</a></p>
+</main><script src="../../xr3d.js"></script><script src="study.js"></script></body></html>
